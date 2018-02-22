@@ -1,0 +1,13 @@
+127.0.0.1 - - [15/Feb/2018:15:40:07 +0530] "GET / HTTP/1.1" 404 1069
+127.0.0.1 - - [15/Feb/2018:15:40:08 +0530] "GET /frontend/ HTTP/1.1" 304 -
+127.0.0.1 - - [15/Feb/2018:15:40:10 +0530] "GET /frontend/js/app.js HTTP/1.1" 200 290
+127.0.0.1 - - [15/Feb/2018:15:40:10 +0530] "GET /frontend/controllers/usercontroller.js HTTP/1.1" 304 -
+127.0.0.1 - - [15/Feb/2018:15:40:10 +0530] "GET /frontend/services/userService.js HTTP/1.1" 200 251
+127.0.0.1 - - [15/Feb/2018:15:40:11 +0530] "GET /frontend/views/home.html HTTP/1.1" 200 147
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:25 +0530] "GET /frontend/ HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:25 +0530] "GET /frontend/js/app.js HTTP/1.1" 200 290
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:25 +0530] "GET /frontend/services/userService.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:25 +0530] "GET /frontend/controllers/usercontroller.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:26 +0530] "GET /frontend/views/home.html HTTP/1.1" 200 147
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:40:41 +0530] "GET /frontend/views/registrationForm.html HTTP/1.1" 200 922
+0:0:0:0:0:0:0:1 - - [15/Feb/2018:15:42:20 +0530] "POST /middleware/registeruser HTTP/1.1" 200 131

@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+var app=angular.module('app',['ngRoute'])
+app.config(function($routeProvider)
+		{
+	$routeProvider
+	.when('/register',{
+	 templateUrl:'views/registrationForm.html',
+	 controller:'UserController'
+			})
+			
+	.otherwise('/index',{
+			 templateUrl:'index.html',
+	})		
+		})

@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+app.factory('userService', function($http){
+	var userService={}
+	
+	userService.registerUser=function(user){
+		alert('entering userservice registerUser()')
+		
+		console.log('in userservice'+user)
+		return $http.post("http://localhost:8081/middleware/registeruser",user)
+	}
+	return userService;
+})

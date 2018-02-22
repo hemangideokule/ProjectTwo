@@ -1,0 +1,35 @@
+.error
+{
+	padding:15px;
+	margin-bottom: 20px;
+	border:1px solid transpaernt;
+	boredr-radius:4px;
+	color:#a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	
+}
+.msg
+{
+	padding:15px;
+	margin-bottom: 20px;
+	border:1px solid transpaernt;
+	boredr-radius:4px;
+	color:#31708f;
+	background-color: #d9edf7;
+	border-color: #ebce8f1;
+	
+}
+#login-box
+{
+	padding:30px;
+	margin-bottom: 20px;
+	border:100px auto;
+	background:#fff;
+	-webkit-border-rdius:2px;
+	boredr-radius:4px;
+	color:#a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+	
+}

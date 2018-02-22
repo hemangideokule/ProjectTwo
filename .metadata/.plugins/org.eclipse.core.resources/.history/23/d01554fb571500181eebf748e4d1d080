@@ -1,0 +1,19 @@
+<form>
+ <table>
+ 
+ <tr>
+ <td>Enter Email:</td>
+ <td><input type="email" ng-model="user.email"></td>
+ </tr>
+ <tr>
+ <td>Enter Password:</td>
+ <td><input type="passsword" ng-model="user.password"></td>
+ </tr>
+ 
+ <tr>
+ <td><input type="submit" ng-click="login(user)"></td>
+ </tr>
+ </table>
+
+
+</form>

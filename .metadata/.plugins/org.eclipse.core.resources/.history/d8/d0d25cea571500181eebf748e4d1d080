@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+app.controller('UserController',function($scope,$location,userService){
+	$scope.registerUser=function(user){
+		alert('Entering usercontroller registerUer() in frontend'+user)
+		console.log('entering usercontroller registerUser() in frontend'+user)
+		
+		userService.registerUser(user).then(function(response){
+			alert('Registered Successfully.. Login Again..!!')
+			$location.path('/index')
+			
+		}	
+		,function(response){
+			$scope.error=response.data
+			
+		})
+	}
+})
