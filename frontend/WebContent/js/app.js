@@ -14,29 +14,47 @@ app.config(function($routeProvider)
 	 templateUrl:'views/login.html',
 	 controller:'UserController'
 			})
+			
+   .when('/home',{
+	 templateUrl:'views/home.html',
+	 controller:'UserController'
+			})	
+			
+	.when('/edituserprofile',{
+	 templateUrl:'views/edituserprofile.html',
+	 controller:'UserController'
+			})	
+			
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})
 	
 	
-	app.run(function($location,$rootScope,$cookieStore,userService){
-		if(rootScope.loggedInUser==undefined)
-			$rootScope.loggedInUser=$cookieStore.get('currentUser')
-			
-			$rootScope.logout=function(){
-			userService.logout().then(
+app.run(function ($location,$rootScope,$cookieStore,userService){
+	console.log("app.run(1)")
+	
+	if ($rootScope.loggedInUser==undefined)
+		console.log("app.run(2)")
+		
+		$rootScope.loggedInUser=$cookieStore.get('currentUser')
+		console.log("app.run(3)")
+	
+		$rootScope.logout=function(){
+		console.log("app.run(4)")
+		
+		userService.logout().then(
 		function(response){
-			delete $rootScope.remove('currentUSer')
-			$rootScope.message="Successfully LoggedOut..!!"
-				$location.path('/login')
-				
+			delete $rootScope.loggedInUser;
+			$cookieStore.remove('currentUser')
+			$rootScope.message="SuccessFull Logout"
+				alert('Logout Successful. Please Login to Continue')
+				$location.path('/login');
 		},function(response){
-			$rootScope.error=response.data
-			if(response.status==401)
-				$location.path('/login')
+			$scope.error=response.data
+			if(response.status=401)
+				$location.path=('/login')
 			
-		}
-			)
+		})
 		}
 	})
-		})
+})

@@ -8,6 +8,7 @@ public interface UserDao {
 	User login(User user);//will return either 1 user object or null
 	void update(User validUser);
 	User getUser(String email);
+	void updateUser(User user);
 	
 
 }

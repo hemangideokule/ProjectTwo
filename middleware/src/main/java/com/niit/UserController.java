@@ -73,25 +73,61 @@ return new ResponseEntity<User>(user,HttpStatus.OK);
 		
 	}
 	
-	@RequestMapping(value="/logout",method=RequestMethod.POST)
-	public ResponseEntity<?> logout(HttpSession session){
+	@RequestMapping(value="/logout",method=RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session)
+	{
+		System.out.println("entering into logout()");
 		String email=(String) session.getAttribute("loginId");
-		if(email==null) {
+		if(email==null)
+		{
 			ErrorClazz error= new ErrorClazz(4,"Please Login First..");
 			 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
 			
 		}
 		
 		User user= userDao.getUser(email);
+		System.out.println("geUser()"+user);
 		user.setOnline(false);
+		
 		userDao.update(user);
+		System.out.println("updateUser()"+user);
 		session.removeAttribute("loginId");
+		System.out.println("removeLognId");
 		session.invalidate();
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 		
-
-	
-
+    @RequestMapping(value="/getuser",method=RequestMethod.GET)
+	public  ResponseEntity<?> getUser(HttpSession session){
+            String email=(String)session.getAttribute("loginId");
+		if(email==null)
+		{
+			ErrorClazz error= new ErrorClazz(5,"Unauthorized Access..");
+			 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+		}
+	User user=userDao.getUser(email);
+	 return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+		
+    @RequestMapping(value="/updateuser",method=RequestMethod.PUT)
+   	public  ResponseEntity<?> updateUser(@RequestBody User user,HttpSession session){
+    String email=(String)session.getAttribute("loginId");
+    if(email==null)
+	{
+		ErrorClazz error= new ErrorClazz(5,"Unauthorized Access..");
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+	}
+    
+    try
+    {
+        userDao.update(user);
+   	 return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+    catch(Exception e)
+    {
+    	ErrorClazz error= new ErrorClazz(5,"Unable to update user detail"+e.getMessage());
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    }
 	
 }

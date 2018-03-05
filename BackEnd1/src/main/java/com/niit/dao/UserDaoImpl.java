@@ -56,5 +56,12 @@ System.out.println("UserDaoImpl bean created");
 		User user=(User)session.get(User.class, email);
 		return user;
 	}
+	public void updateUser(User user) {
+		Session session=sessionFactory.getCurrentSession();
+		session.update(user);
+		
+		//return user;
+		
+	}
 
 }
