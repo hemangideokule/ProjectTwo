@@ -1,0 +1,21 @@
+
+<div class="container">
+<br>
+<br>
+<br>
+Search: <input type="text" ng-model="searchTxt">  
+  <div class="row" style="width:200px">
+  
+    <div ng-repeat="job in jobs| filter:searchTxt">
+      <div class="panel panel-info">
+        <div class="panel-heading"><a href="#/getJob/{{job.id}}">{{job.jobTitle}}
+        </a></div>
+        
+        <div class="panel-body">
+       <b>Posted On abc:</b>  {{job.postedOn | date:'medium'}}<br>
+      <b>Skills Required :</b> {{job.skillsRequired}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

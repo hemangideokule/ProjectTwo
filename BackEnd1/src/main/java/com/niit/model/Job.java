@@ -24,6 +24,13 @@ public class Job {
 	private String yrsOfExp;
 	private String companyName;
 	private String salary;
+	private String postedOn;
+	public String getPostedOn() {
+		return postedOn;
+	}
+	public void setPostedOn(String postedOn) {
+		this.postedOn = postedOn;
+	}
 	public int getId() {
 		return id;
 	}

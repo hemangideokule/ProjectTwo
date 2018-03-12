@@ -1,5 +1,7 @@
 package com.niit;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
@@ -16,6 +18,7 @@ import com.niit.dao.UserDao;
 import com.niit.model.ErrorClazz;
 import com.niit.model.Job;
 import com.niit.model.User;
+
 @Controller
 public class JobController {
 	@Autowired
@@ -52,8 +55,27 @@ public class JobController {
 			ErrorClazz error= new ErrorClazz(6,"Unable to Add Job Details.."+e.getMessage());
 			 return new ResponseEntity<ErrorClazz>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+  }
+	
+	@RequestMapping(value="/alljobs", method=RequestMethod.GET)
+	public ResponseEntity<?> getAllJobs(HttpSession session)
+	{
+		String email=(String) session.getAttribute("loginId");
+		if(email==null) {
+			System.out.println("error clazz");
+			ErrorClazz error= new ErrorClazz(5,"Unauthorized Access..");
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
 		}
+		List<Job> jobs=jobDao.getAllJobs();
+		System.out.println("all jobs n JobController");
+		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
 	}
+
+
+
+
+
+
+}
 
 

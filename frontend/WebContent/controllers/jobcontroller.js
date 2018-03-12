@@ -3,6 +3,7 @@
  */
 app.controller('JobCtrl',function($scope,$rootScope,$location,jobService){
 	$scope.addJob=function(job){
+		
 		jobService.addJob(job).then(
 		function(response){
 			console.log('jobController')
@@ -17,4 +18,14 @@ app.controller('JobCtrl',function($scope,$rootScope,$location,jobService){
 		
 	
 }
+	jobService.getAllJobs().then(function(response){
+		$scope.jobs=response.data
+		alert('get all jobs')
+	},function(response){
+		$rootScope.error=response.data
+		console.log('error in getAllJobs')
+		if(response.status==401)
+			$location.path('/login')
+			alert('something is not right ')
+	})
 })

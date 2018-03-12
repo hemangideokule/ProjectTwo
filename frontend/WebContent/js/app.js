@@ -28,38 +28,41 @@ app.config(function($routeProvider)
 		.when('/addjob',{
 	 templateUrl:'views/jobform.html',
 	 controller:'JobCtrl'
-			})			
+			})	
+			.when('/alljobs',{
+		templateUrl:'views/joblist.html',
+		controller:'JobCtrl'
+	})
 			
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})
-	
+		})
+			
 	
 app.run(function ($location,$rootScope,$cookieStore,userService){
 	console.log("app.run(1)")
 	
 	if ($rootScope.loggedInUser==undefined)
-		console.log("app.run(2)")
-		
 		$rootScope.loggedInUser=$cookieStore.get('currentUser')
-		console.log("app.run(3)")
-	
+		cosole.log('entering app.run')
 		$rootScope.logout=function(){
-		console.log("app.run(4)")
-		
-		userService.logout().then(
+		cosole.log('entering log out')
+		userService.logout().then(	
 		function(response){
 			delete $rootScope.loggedInUser;
 			$cookieStore.remove('currentUser')
-			$rootScope.message="SuccessFull Logout"
+			$rootScope.message="SuccessFully LoggedOut"
 				alert('Logout Successful. Please Login to Continue')
 				$location.path('/login');
-		},function(response){
-			$scope.error=response.data
+		},
+		function(response){
+			$rootScope.error=response.data
 			if(response.status=401)
-				$location.path=('/login')
+				cosole.log('error')
+				$location.path('/login');
 			
 		})
 		}
 	})
-})
+

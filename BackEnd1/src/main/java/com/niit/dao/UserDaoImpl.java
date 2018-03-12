@@ -40,7 +40,7 @@ System.out.println("UserDaoImpl bean created");
 	
 	}
 	public User login(User user) {
-		Session session=sessionFactory.getCurrentSession();
+		Session session=sessionFactory.openSession();
 		Query query = session.createQuery("from User where email=? and password=?");
 				query.setString(0, user.getEmail());
 		query.setString(1, user.getPassword());
