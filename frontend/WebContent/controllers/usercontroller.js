@@ -39,11 +39,14 @@ app.controller('UserController',function($scope,$rootScope,$location,userService
 			},
 			function(response){
 				if(response.status==401)
-					$location.path('/login')
+				{ $location.path('/login')
+	               console.log('usercontroller.js logout')
+				}
 				else
-					console.log('error 2')
+					{console.log('error 2')
 					$scope.error=response.data;
-			})
+					}
+				})
 			}
 
 

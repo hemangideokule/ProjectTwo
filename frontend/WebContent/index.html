@@ -19,6 +19,8 @@
 <script type="text/javascript" src="services/userService.js"></script>
 <script type="text/javascript" src="controllers/jobcontroller.js"></script>
 <script type="text/javascript" src="services/jobService.js"></script>
+<script type="text/javascript" src="controllers/blogcontroller.js"></script>
+<script type="text/javascript" src="services/blogService.js"></script>
 </head>
 <body ng-app="app">
 NIIT
@@ -38,14 +40,22 @@ NIIT
        data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Job<b class="caret"></b></a>
        <ul class="dropdown-menu">
        		<li ng-show="loggedInUser.role=='ADMIN'"><a href="#/addjob"  > ADD JOB</a></li>
-       		<li><a href="#/alljobs">Get All Jobs</a></li>
-       		
-     
+
        </ul>
-       </li>
+      </li>
+      
+       <li class="dropdown"><a href="" class="dropdown-toggle"
+       data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Blog<b class="caret"></b></a>
+       <ul class="dropdown-menu">
+       		<li><a href="#/addblog" >Add Blog</a></li>
+       		<li> <a href="#/blogsnotapproved"  ng-show="loggedInUser.role=='ADMIN'"  >Blogs Waiting for approval </a></li>
+	<li><a href="#/blogsapproved">Blogs</a></li>
+       		
+       </ul>
+      </li>
        
        <li><a href="#" ng-show="loggedInUser.firstname!=undefined"> Welcome {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
-     <li><a href="#" ng-click="logout()" ng-show="loggedInUser.firstname!=undefined"> Logout</a></li>   
+     <li><a href="#"  ng-click="logout()" ng-show="loggedInUser.firstname!=undefined"> Logout</a></li>   
        
        
   </ul>

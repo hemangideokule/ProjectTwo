@@ -11,5 +11,9 @@ app.factory('jobService', function($http){
 	jobService.getAllJobs=function(){
 		 return $http.get("http://localhost:8081/middleware/alljobs");
 			}
+	
+	jobService.getJob=function(id){
+		 return $http.get("http://localhost:8081/middleware/getjob/"+id)
+			}
 	return jobService;
 })

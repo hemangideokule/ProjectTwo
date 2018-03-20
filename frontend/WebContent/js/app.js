@@ -29,11 +29,32 @@ app.config(function($routeProvider)
 	 templateUrl:'views/jobform.html',
 	 controller:'JobCtrl'
 			})	
-			.when('/alljobs',{
+		
+	    .when('/alljobs',{
 		templateUrl:'views/joblist.html',
 		controller:'JobCtrl'
 	})
+	
+	.when('/getjob/:id',{
+	 templateUrl:'views/jobdetail.html',
+	 controller:'JobCtrl'
+			})	
+		
+	.when('/addblog',{
+	 templateUrl:'views/blogform.html',
+	 controller:'BlogCtrl'
+			})	
 			
+			.when('/blogsnotapproved',{
+	 templateUrl:'views/blogsnotapproved.html',
+	 controller:'BlogCtrl'
+			})	
+			
+				
+			.when('/blogsapproved',{
+	 templateUrl:'views/blogsapproved.html',
+	 controller:'BlogCtrl'
+			})	
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})
@@ -45,9 +66,9 @@ app.run(function ($location,$rootScope,$cookieStore,userService){
 	
 	if ($rootScope.loggedInUser==undefined)
 		$rootScope.loggedInUser=$cookieStore.get('currentUser')
-		cosole.log('entering app.run')
+		console.log('entering app.run')
 		$rootScope.logout=function(){
-		cosole.log('entering log out')
+		console.log('entering log out')
 		userService.logout().then(	
 		function(response){
 			delete $rootScope.loggedInUser;
@@ -59,7 +80,7 @@ app.run(function ($location,$rootScope,$cookieStore,userService){
 		function(response){
 			$rootScope.error=response.data
 			if(response.status=401)
-				cosole.log('error')
+				console.log('error')
 				$location.path('/login');
 			
 		})
