@@ -1,5 +1,7 @@
 package com.niit.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +24,21 @@ public class Job {
 	private String skillsRequired;
 	private String location;
 	private String yrsOfExp;
+
 	private String companyName;
 	private String salary;
-	private String postedOn;
-	public String getPostedOn() {
+	private Date postedOn;
+	
+	public String getJobDescription() {
+		return jobDescription;
+	}
+	public void setJobDescription(String jobDescription) {
+		this.jobDescription = jobDescription;
+	}
+	public Date getPostedOn() {
 		return postedOn;
 	}
-	public void setPostedOn(String postedOn) {
+	public void setPostedOn(Date postedOn) {
 		this.postedOn = postedOn;
 	}
 	public int getId() {
@@ -43,12 +53,7 @@ public class Job {
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
-	public String getJobDescrription() {
-		return jobDescription;
-	}
-	public void setJobDescrription(String jobDescrription) {
-		this.jobDescription = jobDescrription;
-	}
+
 	public String getSkillsRequired() {
 		return skillsRequired;
 	}

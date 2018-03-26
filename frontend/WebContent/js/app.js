@@ -46,15 +46,35 @@ app.config(function($routeProvider)
 			})	
 			
 			.when('/blogsnotapproved',{
-	 templateUrl:'views/blogsnotapproved.html',
+	 templateUrl:'views/blogsnotapproved.html',//list of blogs
 	 controller:'BlogCtrl'
+			})	
+			
+			.when('/getblognotapproved/:id',{
+	 templateUrl:'views/blogapprovalform.html',//list of blogs
+	 controller:'BlogDetailsCtrl'
 			})	
 			
 				
 			.when('/blogsapproved',{
-	 templateUrl:'views/blogsapproved.html',
+	 templateUrl:'views/blogsapproved.html', //list of blogs
 	 controller:'BlogCtrl'
+			})
+			
+	.when('/getblog/:id',{
+		templateUrl:'views/blogdetails.html', //single blogpost : updateBlog(),getBlog(), addComment
+		controller:'BlogDetailsCtrl'
 			})	
+			
+		
+	.when('/home',{
+		templateUrl:'views/home.html', //single blogpost : updateBlog(),getBlog(), addComment
+		controller:'NotificationCtrl'
+			})	
+			
+				
+			
+			
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})

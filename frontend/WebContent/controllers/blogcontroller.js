@@ -21,7 +21,7 @@ $scope.addBlog=function(blog){
 if($rootScope.loggedInUser.role=='ADMIN')
 blogService.getBlogsWaitingForApproval().then(
 			function(response){
-				alert('entering getBlogsWaitingForApproval()')
+				//alert('entering getBlogsWaitingForApproval()')
 				console.log('getBlogsWaitingForApproval')
 				$scope.blogsWaitingForApproval=response.data
 			}, function(response){
@@ -32,7 +32,7 @@ blogService.getBlogsWaitingForApproval().then(
 
 blogService.getBlogApproved().then(
 		function(response){
-			alert('entering getBlogApproved()')
+			//alert('entering getBlogApproved()')
 			console.log('getBlogApproved')
 			
 			$scope.blogsApproved=response.data

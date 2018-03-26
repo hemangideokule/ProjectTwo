@@ -31,6 +31,8 @@ app.controller('JobCtrl',function($scope,$rootScope,$location,jobService,$routeP
 	})
 	
 	if(id!=undefined){
+		console.log(' finding job by id')
+		alert(' finding job by id')
 	jobService.getJob(id).then(function(response){
 		$scope.job=response.data
 	}, function(response){

@@ -2,13 +2,14 @@ package com.niit.dao;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.stereotype.Repository;
-import org.springframework.util.SystemPropertyUtils;
+
 
 import com.niit.model.User;
 
@@ -19,20 +20,34 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	Session session;
 	
 	public UserDaoImpl() {
 System.out.println("UserDaoImpl bean created");
 	}
+	
 	public void registerUser(User user) {
 		System.out.println("registerUser in dao"+user);
-		Session session =sessionFactory.getCurrentSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		session.persist(user);
+	
 		
 		
 	}
 	public boolean isEmailUnique(String email) {
-		Session session=sessionFactory.getCurrentSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		User user =(User) session.get(User.class, email);
+	
 	if(user==null)
         return  true;
 	else
@@ -40,24 +55,44 @@ System.out.println("UserDaoImpl bean created");
 	
 	}
 	public User login(User user) {
-		Session session=sessionFactory.openSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		Query query = session.createQuery("from User where email=? and password=?");
 				query.setString(0, user.getEmail());
 		query.setString(1, user.getPassword());
 		return (User)query.uniqueResult();
 	}
 	public void update(User validUser) {
-		Session session=sessionFactory.getCurrentSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		session.update(validUser);
 		
 	}
 	public User getUser(String email) {
-		Session session=sessionFactory.getCurrentSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		User user=(User)session.get(User.class, email);
 		return user;
 	}
 	public void updateUser(User user) {
-		Session session=sessionFactory.getCurrentSession();
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
 		session.update(user);
 		
 		//return user;

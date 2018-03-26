@@ -13,6 +13,7 @@ app.factory('jobService', function($http){
 			}
 	
 	jobService.getJob=function(id){
+		alert(' finding job by id')
 		 return $http.get("http://localhost:8081/middleware/getjob/"+id)
 			}
 	return jobService;

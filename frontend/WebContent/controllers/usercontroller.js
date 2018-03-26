@@ -19,7 +19,7 @@ app.controller('UserController',function($scope,$rootScope,$location,userService
 	
 	$scope.login=function(user){
 		console.log('UserController->login')
-		console.log(user)
+		
 		userService.login(user).then(function(response){
 			$rootScope.loggedInUser=response.data
 	         $cookieStore.put('currentUser',response.data)

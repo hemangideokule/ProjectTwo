@@ -3,11 +3,11 @@
 <div ng-repeat="blog in blogsApproved">
  <div class="panel panel-info">
         <div class="panel-heading">
-<a>{{blog.blogTitle}}</a>
+<a href="#/getblog/{{blog.id}}">{{blog.blogTitle}}</a>
 </div>
 <div class="panel-body">
 <b> Posted on: </b>{{blog.postedOn | date:'medium'}}<br>
-<b> Posted by: </b>{{blog.postedBy.firstname}} &nbps;{{blog.postedBy.lastname}}<br>
+<b> Posted by: </b>{{blog.postedBy.firstname}} &nbsp{{blog.postedBy.lastname}}<br>
 </div>
 </div>
 </div>

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,6 +80,21 @@ public class JobController {
 		
 	}
 	
+	@RequestMapping(value="/getjob/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> getJob(@PathVariable int id,HttpSession session)
+	{
+		String email=(String) session.getAttribute("loginId");
+		if(email==null) {
+			System.out.println("error clazz");
+			ErrorClazz error= new ErrorClazz(4,"Unauthorized Access..");
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+		}
+		System.out.println("get job by id in JobCntroller");
+	
+			Job job=jobDao.getJob(id);
+		return new ResponseEntity<Job>(job,HttpStatus.OK);
+		
+	}
 
 
 
