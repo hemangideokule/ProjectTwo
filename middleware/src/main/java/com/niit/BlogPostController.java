@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.dao.BlogPostDao;
+import com.niit.dao.BlogPostLikesDao;
 import com.niit.dao.UserDao;
+import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
 import com.niit.model.ErrorClazz;
 import com.niit.model.User;
@@ -27,6 +29,8 @@ public class BlogPostController {
 	private BlogPostDao blogPostDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private BlogPostLikesDao blogPostLikesDao;
 	
 	@RequestMapping(value="/addblogpost", method=RequestMethod.POST)
 	public ResponseEntity<?> addBlogPost(@RequestBody BlogPost blogPost, HttpSession session)
@@ -125,7 +129,27 @@ public class BlogPostController {
 		}
 		blogPostDao.reject(blog,rejectionReason);
 		return new ResponseEntity<Void>(HttpStatus.OK);
-		
+	}
+	
+	@RequestMapping(value="/addcomment/{id}/{commentTxt}", method=RequestMethod.POST)
+	public ResponseEntity<?> addBlogComment(@PathVariable int id, @PathVariable String commentTxt, HttpSession session)
+	{
+		String email=(String) session.getAttribute("loginId");
+		if(email==null) {
+			System.out.println("error clazz");
+			ErrorClazz error= new ErrorClazz(4,"Unauthorized Access..");
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+		}
+		BlogComment blogComment=new BlogComment();
+		BlogPost blogPost=blogPostDao.getBlog(id);
+		User commentedBy=userDao.getUser(email);
+		blogComment.setCommentTxt(commentTxt);
+		blogComment.setCommentedOn(new Date());
+		blogComment.setCommentedBy(commentedBy);
+		blogComment.setBlogPost(blogPost);
+		blogPostDao.addBlogComment(blogComment);
+		return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
 	}
 
+	
 }

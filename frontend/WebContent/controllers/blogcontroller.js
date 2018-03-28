@@ -23,7 +23,9 @@ blogService.getBlogsWaitingForApproval().then(
 			function(response){
 				//alert('entering getBlogsWaitingForApproval()')
 				console.log('getBlogsWaitingForApproval')
+					console.log(response.data)
 				$scope.blogsWaitingForApproval=response.data
+			
 			}, function(response){
 				$rootScope.error=response.data
 				if(response.status==401)

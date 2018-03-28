@@ -22,6 +22,10 @@ app.factory('blogService', function($http){
 	    return $http.get("http://localhost:8081/middleware/getblog/"+id)
 	}
 	
+	blogService.hasUserLikedBlog=function(id){
+		return $http.get("http://localhost:8081/middleware/hasuserlikedblog/"+id)
+	}
+	
 	blogService.approve=function(blog){
 		//blog.approved=0
 	    return $http.put("http://localhost:8081/middleware/approve/",blog)
@@ -32,6 +36,9 @@ app.factory('blogService', function($http){
 		//blog.approved=0
 	    return $http.put("http://localhost:8081/middleware/reject/"+rejectionReason,blog)
 	    //blog.approved=delete
+	}
+	blogService.updateLikes=function(id){
+		return $http.put("http://localhost:8081/middleware/updateLikes/"+id);
 	}
 	
 	return blogService;

@@ -33,4 +33,22 @@ public class NotificationDaoImpl implements NotificationDao {
 		
 	}
 
+	public Notification getNotification(int id) {
+		try {session =sessionFactory.getCurrentSession();}
+		catch (HibernateException e){session= sessionFactory.openSession();}
+		Notification notification=(Notification)session.get(Notification.class, id);
+		//select * from notification where id-?
+		return  notification;
+	}
+
+	public void updateNotification(int id) {
+		try {session =sessionFactory.getCurrentSession();}
+		catch (HibernateException e){session= sessionFactory.openSession();}
+		Notification notification=(Notification)session.get(Notification.class, id);
+		notification.setViewed(true);
+		//update notification set viewed=1 where id=?
+		session.update(notification);
+		
+	}
+
 }

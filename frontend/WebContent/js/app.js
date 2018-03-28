@@ -68,11 +68,16 @@ app.config(function($routeProvider)
 			
 		
 	.when('/home',{
-		templateUrl:'views/home.html', //single blogpost : updateBlog(),getBlog(), addComment
+		templateUrl:'views/home.html', 
 		controller:'NotificationCtrl'
 			})	
 			
-				
+	.when('/getnotification/:id',{
+		templateUrl:'views/notificationdetails.html', 
+		controller:'NotificationCtrl'
+			})	
+			
+							
 			
 			
 	.otherwise({

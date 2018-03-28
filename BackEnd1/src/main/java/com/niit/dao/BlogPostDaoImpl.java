@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
 import com.niit.model.Notification;
 
@@ -69,5 +70,11 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		notification.setRejectionReason(rejectionReason);
 		session.save(notification);
 	session.delete(blog);
+	}
+	
+	public void addBlogComment(BlogComment blogComment) {
+		try {session =sessionFactory.getCurrentSession();}
+		catch (HibernateException e){ session= sessionFactory.openSession();}
+		session.save(blogComment);
 	}
 }
