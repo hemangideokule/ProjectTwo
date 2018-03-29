@@ -5,6 +5,7 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$sce,$location,blogS
 
 	var id=$routeParams.id;
 	$scope.rejectionTxt=false;
+	$scope.showComments=false;
 	
 	blogService.getBlog(id).then(
 			function(response){
@@ -56,6 +57,10 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$sce,$location,blogS
 			$scope.rejectionTxt=true;
 		}
 	
+	/*$scope.showPostComment=function(){
+		$scope.postComment=true;
+	}
+*/
 	$scope.updateLikes=function(id){
 		blogService.updateLikes(id).then(function(response){
 			$scope.blog=response.data//updated blodpost likes
@@ -67,12 +72,17 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$sce,$location,blogS
 		})
 	}
 	
-	$scope.addComment=function(id,commentTxt){
-	blogService.addComment(id,commentTxt).then(
+	$scope.addComment=function(blog,commentTxt)
+		{
+		$scope.blogComment={}
+		$scope.blogComment.blogPost=blog;
+		$scope.blogComment.commentTxt=commentTxt;
+		
+		blogService.addComment($scope.blogComment).then(
 				function(response){
 					console.log('addcomment in controller')
 					$scope.blogComment=response.data
-					getBlogComments(id)
+						getBlogComments(id)
 					$scope.commentTxt=''
 				},function(response){
 					$rootScope.error=response.data
@@ -81,9 +91,23 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$sce,$location,blogS
 						else{
 							$scope.exceptionMessage=response.data
 						}
-							
 				})
+		}
+	function getBlogComments(id){
+		blogService.getBlogComments(id).then(function(response){
+			$scope.comments=response.data//select *  from blogcomment where blogid=?
+		}, function(response){
+			$rootScope.error=response.data
+					if(response.status==401)
+						$location.path('/login')
+		})
 	}
-         /* video till 0.39.02*/
+    
+	getBlogComments(id)
 	
+	$scope.OnShowComments=function(){
+ 	   $scope.showComments=!$scope.showComments;
+    }
+	
+
 })

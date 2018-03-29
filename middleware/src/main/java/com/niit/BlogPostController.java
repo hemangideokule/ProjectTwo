@@ -131,8 +131,8 @@ public class BlogPostController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/addcomment/{id}/{commentTxt}", method=RequestMethod.POST)
-	public ResponseEntity<?> addBlogComment(@PathVariable int id, @PathVariable String commentTxt, HttpSession session)
+	@RequestMapping(value="/addcomment", method=RequestMethod.POST)
+	public ResponseEntity<?> addBlogComment(@RequestBody BlogComment blogComment, HttpSession session)
 	{
 		String email=(String) session.getAttribute("loginId");
 		if(email==null) {
@@ -140,15 +140,34 @@ public class BlogPostController {
 			ErrorClazz error= new ErrorClazz(4,"Unauthorized Access..");
 		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
 		}
-		BlogComment blogComment=new BlogComment();
-		BlogPost blogPost=blogPostDao.getBlog(id);
 		User commentedBy=userDao.getUser(email);
-		blogComment.setCommentTxt(commentTxt);
 		blogComment.setCommentedOn(new Date());
 		blogComment.setCommentedBy(commentedBy);
-		blogComment.setBlogPost(blogPost);
+		
+		try {
 		blogPostDao.addBlogComment(blogComment);
+		}
+		catch(Exception e)
+		{
+			ErrorClazz error= new ErrorClazz(6,"Unable to post comment.."+e.getMessage());
+			 return new ResponseEntity<ErrorClazz>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/blogcomments/{blogPostId}" , method=RequestMethod.GET)
+	public ResponseEntity<?> getAllBlogComments(@PathVariable int blogPostId, HttpSession session)
+	{
+		String email=(String) session.getAttribute("loginId");
+		if(email==null) {
+			System.out.println("error clazz");
+			ErrorClazz error= new ErrorClazz(4,"Unauthorized Access..");
+		 return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+		}
+		List<BlogComment> blogComments=blogPostDao.getAllBlogComments(blogPostId);
+		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
+		
+		
 	}
 
 	

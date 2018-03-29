@@ -14,4 +14,5 @@ public interface BlogPostDao {
 	void approve(BlogPost blog);
 	void reject(BlogPost blog, String rejectionReason);
 	void addBlogComment(BlogComment blogComment);
+	List<BlogComment> getAllBlogComments(int blogPostId);
 }

@@ -77,4 +77,14 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		catch (HibernateException e){ session= sessionFactory.openSession();}
 		session.save(blogComment);
 	}
+	public List<BlogComment> getAllBlogComments(int blogPostId) {
+		try {session =sessionFactory.getCurrentSession();}
+		catch (HibernateException e){ session= sessionFactory.openSession();}
+		
+		Query query= session.createQuery("from BlogComment where blogPost.id=?");
+	    query.setInteger(0,blogPostId);
+	    List<BlogComment> blogComments=query.list();
+	    return blogComments;
+	
+	}
 }

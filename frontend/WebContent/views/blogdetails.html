@@ -15,8 +15,21 @@
 </div>
 
 	<div>
+	{{exceptionMessage.message}}
 		<textarea rows="1" cols="10" ng-model="commentTxt"></textarea>
-		<button type="button" class="btn btn-primary" ng-click="addComment(blog.id,commentTxt)">Post Comment</button>
+		<button type="button" class="btn btn-primary" ng-click="addComment(blog,commentTxt)">Post Comment</button>
+	<br>
+	<a ng-click="onShowComments()">{{comments.length}} comments</a><br>
+	<ul style="list-style:none" ng-show="showComments">
+	<li ng-repeat="comment in comments | orderBy:'-commentedOn'">
+	<b> Comment is:</b> {{comment.commentTxt}} &nbsp;
+	<b> Commented By:</b>{{comment.commentedBy.firstname}}&nbsp;
+	<b> Commented On:</b>{{comment.commentedOn | date:'yyyy/MM/dd'}}
+	<hr>
+	</li>
+	</ul>
+
 	</div>
+	
 </div>
 </div>
