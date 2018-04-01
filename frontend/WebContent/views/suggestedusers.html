@@ -1,0 +1,21 @@
+<b>hello</b>
+<br>
+<br>
+
+<table class="table table-striped">
+<tr ng-repeat="user in suggestedUsers">
+<td>{{user.email}}<br>
+{{user.firstname}} &nbsp;{{user.lastname}}<br>
+<b>Phone number:</b>{{user.phone}}
+</td>
+<td>
+<img src="http://localhost:8081/middleware/getImage/{{user.email}}" alt="profilePic" height="40px" width="40px">
+</td>
+<td>
+<button type="button" class="btn btn-primary" ng-click="addFriend(user)">Add Friend</button>
+</td>
+</tr>
+
+
+
+</table>

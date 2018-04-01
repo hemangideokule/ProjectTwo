@@ -5,6 +5,7 @@
 <a>{{blog.blogTitle}}</a><br><br>
 <b>Posted On:</b> {{blog.postedOn | date:'medium'}}<br>
 <b>Posted By:</b> {{blog.postedBy.firstname}} &nbsp; {{blog.postedBy.lastname}}<br>
+<img src="http://localhost:8081/middleware/getImage/{{blog.postedBy.email}}" alt="profilePic" height="30px" width="30px">
 
 </div>
 <div class="panel-body">

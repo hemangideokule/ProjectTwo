@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<br><br>
+<div class="panel panel-default">
+<div class="panel-heading">
+<b>Friend Request</b>
+</div>
+<span ng-if="pendingRequests.length==0"><b>No Pending Request</b></span>
+<div class="panel-body">
+			<ul style="list-style:none">
+				<li ng-repeat="request in pendingRequests">
+				<b>{{request.fromId.email}}</b><br>
+				<b>{{request.fromId.firstname}}</b> &nbsp; <b>{{request.fromId.lastname}}</b><br>
+				<b>{{request.fromId.phone}}</b><br>
+				<img src="http://localhost:8081/middleware/getImage/{{request.fromId.email}}" alt="profilePic" height="40px" width="40px">
+				&nbsp;&nbsp;&nbsp;
+<button type="button" class="btn btn-primary" ng-click="acceptRequest(request)">Accept</button>
+<button type="button" class="btn btn-warning" ng-click="deleteRequest(request)">Delete</button>
+<hr>
+		
+				</li>
+			</ul>
+			
+</div>
+</div>
+</body>
+</html>

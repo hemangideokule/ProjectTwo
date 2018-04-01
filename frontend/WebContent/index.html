@@ -9,6 +9,8 @@
 
 <link href="resources/css/login.css" rel="stylesheet">
 <link href="resources/css/notification.css" rel="stylesheet">
+<link href="resources/css/NewFile.css" rel="stylesheet">
+
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -26,6 +28,8 @@
 <script type="text/javascript" src="controllers/blogdetailscontroller.js"></script>
 <script type="text/javascript" src="services/notificationService.js"></script>
 <script type="text/javascript" src="controllers/notificationcontroller.js"></script>
+<script type="text/javascript" src="services/friendService.js"></script>
+<script type="text/javascript" src="controllers/friendcontroller.js"></script>
 
 
 </head>
@@ -56,6 +60,17 @@ NIIT
        			<li> <a href="#/blogsnotapproved"  ng-show="loggedInUser.role=='ADMIN'"  >Blogs Waiting for approval </a></li>
 				<li><a href="#/blogsapproved">Blogs</a></li>
        		</ul></li>
+       		
+       		<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Friend<b class="caret"></b></a>
+       		<ul class="dropdown-menu">
+       			<li><a href="#/suggestedusers" >Sugested Users</a></li>
+       			<li><a href="#/pendingrequests" >Pending Requests</a></li>
+       			
+       		</ul></li>
+       		
+       		<li><a href="#/uploadprofile" ng-show="loggedInUser.firstname!=undefined">
+	<img alt="upload Picture" width="30px" height="30px" class="img-rounded" src="http://localhost:8081/middleware/getImage/{{loggedInUser.email}}"></a></li>
+	
        
               <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname">
