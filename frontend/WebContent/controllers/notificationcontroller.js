@@ -21,7 +21,7 @@ app.controller('NotificationCtrl',function($scope,$rootScope,$routeParams,notifi
 		notificationService.getNotification(id).then(
 				function(response){
 					console.log('id'+id)
-					alert('In notificationcontroller.js (by id)')
+		
 					$scope.notification=response.data
 				},
 				function(response){

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="panel panel-default">
+<div class="panel-heading">
+<br><br>
+<b>Your Friends</b>
+</div>
+<span ng-if="friends.length==0"><b>No Friends to Show</b></span>
+
+<div class="panel-body">
+	<ul style="list-style:none">
+		<li ng-repeat="friend in friends">
+		<b>{{friend.firstname}}</b> &nbsp;<b> {{friend.lastname}}</b> <br>
+			{{friend.email}}<br>
+			{{friend.phone}}<br>
+			{{friend.role}}<br>
+			<img src="http://localhost:8081/middleware/getImage/{{friend.email}}" alt="profilePic" height="40px" width="40px">
+				<hr>
+		</li>
+	</ul>
+</div>
+</div>
+</body>
+</html>

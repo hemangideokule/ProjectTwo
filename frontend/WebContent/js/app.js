@@ -94,6 +94,16 @@ app.config(function($routeProvider)
 		controller:'FriendCtrl'
 			})
 			
+	 .when('/friends',{
+		templateUrl:'views/friendsList.html', 
+		controller:'FriendCtrl'
+			})
+			
+	 .when('/chat',{
+		templateUrl:'views/chat.html', 
+		
+			})		
+			
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})

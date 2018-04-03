@@ -31,6 +31,11 @@
 <script type="text/javascript" src="services/friendService.js"></script>
 <script type="text/javascript" src="controllers/friendcontroller.js"></script>
 
+<script type="text/javascript" src="js/sockjs/sockjs.min.js"></script>
+<script type="text/javascript" src="js/stomp/dist/stomp.min.js"></script>
+
+<script type="text/javascript" src="services/chatService.js"></script>
+<script type="text/javascript" src="controllers/chatcontroller.js"></script>
 
 </head>
 <body ng-app="app">
@@ -65,6 +70,7 @@ NIIT
        		<ul class="dropdown-menu">
        			<li><a href="#/suggestedusers" >Sugested Users</a></li>
        			<li><a href="#/pendingrequests" >Pending Requests</a></li>
+       			<li><a href="#/friends" >Friend List</a></li>
        			
        		</ul></li>
        		
@@ -86,7 +92,7 @@ NIIT
     		</ul>
     		</li>	
        
-       
+      <li><a href="#/chat" ng-show="loggedInUser.firstname!=undefined"> Chat Room</a> </li>
        
        <li><a href="#" ng-show="loggedInUser.firstname!=undefined"> Welcome {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
      <li><a href="#"  ng-click="logout()" ng-show="loggedInUser.firstname!=undefined"> Logout</a></li>   
