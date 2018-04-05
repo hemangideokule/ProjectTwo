@@ -66,6 +66,18 @@ $scope.updateUser=function(user){
 	})
 }
 
+$rootScope.searchUser=function(user){
+	console.log(user)
+	userService.searchUser(user).then(function(response){
+		
+		$scope.users=response.data
+	}, function(response){
+		if(response.status==401)
+			$location.path('/login')
+		
+	})
+}
+
 })
 
 

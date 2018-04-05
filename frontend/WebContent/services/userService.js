@@ -30,6 +30,10 @@ app.factory('userService', function($http){
 		return $http.put("http://localhost:8081/middleware/updateuser",user)
 	}
 	
+	userService.searchUser=function(user){
+		console.log("searchuser..")
+		return $http.get("http://localhost:8081/middleware/searchuser/"+user)
+	}
 	
 	
 	return userService;

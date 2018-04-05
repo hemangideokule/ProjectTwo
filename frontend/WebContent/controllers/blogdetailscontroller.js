@@ -105,7 +105,7 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$sce,$location,blogS
     
 	getBlogComments(id)
 	
-	$scope.OnShowComments=function(){
+	$scope.onShowComments=function(){
  	   $scope.showComments=!$scope.showComments;
     }
 	

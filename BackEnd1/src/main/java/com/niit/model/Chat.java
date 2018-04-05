@@ -26,4 +26,3 @@ public class Chat {
 	
 }
 
-//video 1.20.00

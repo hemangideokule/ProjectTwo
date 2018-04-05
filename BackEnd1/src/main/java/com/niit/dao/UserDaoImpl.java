@@ -1,5 +1,7 @@
 package com.niit.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
@@ -94,9 +96,21 @@ System.out.println("UserDaoImpl bean created");
 				 session= sessionFactory.openSession();
 			}
 		session.update(user);
-		
-		//return user;
-		
 	}
 
+	public List<User> searchUser(String name){
+		System.out.println(name);
+		try {
+			 session =sessionFactory.getCurrentSession();
+			}
+			catch (HibernateException e){
+				 session= sessionFactory.openSession();
+			}
+		Query query=session.createQuery("from User u where u.firstname like ? or u.lastname like ? or u.email like ?");
+		query.setString(0,"%"+name+"%");
+		query.setString(1,"%"+name+"%");
+		query.setString(2,"%"+name+"%");
+		List<User> users=query.list();
+		return users;
+	}
 }

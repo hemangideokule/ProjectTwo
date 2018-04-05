@@ -44,7 +44,7 @@ NIIT
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"><i>project 2</i></a>
+      <a class="navbar-brand" href="#/home"><i>project 2</i></a>
     </div>
     <ul class="nav navbar-nav">
     <!--   <li><a href="#/index">HOME</a></li> -->
@@ -93,6 +93,14 @@ NIIT
     		</li>	
        
       <li><a href="#/chat" ng-show="loggedInUser.firstname!=undefined"> Chat Room</a> </li>
+       
+       <li ng-show="loggedInUser.firstname!=undefined">
+       <div class="navbar buttons">
+       <input type="text" placeholder="search user" class="navbar search" ng-model="user">
+       <a href="#/searchuser" class="btn navbar-btn btn-primary pull-right" type="button" ng-click="searchUser(user)">
+       <i class="fa fa-search"></i></a>
+       </div>
+       </li>
        
        <li><a href="#" ng-show="loggedInUser.firstname!=undefined"> Welcome {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
      <li><a href="#"  ng-click="logout()" ng-show="loggedInUser.firstname!=undefined"> Logout</a></li>   

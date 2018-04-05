@@ -101,9 +101,15 @@ app.config(function($routeProvider)
 			
 	 .when('/chat',{
 		templateUrl:'views/chat.html', 
+		controller:'ChatCtrl'
 		
 			})		
-			
+	
+	.when('/searchuser',{
+		templateUrl:'views/searchUsers.html', 
+		controller:'UserController'
+		
+			})				
 	.otherwise({
 			 templateUrl:'views/home.html',
 	})

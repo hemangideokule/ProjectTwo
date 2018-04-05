@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+</head>
+<body>
+<br><br><br><br><br>
+<span ng-if="users.length==0">No user found</span>
+<ul style="list-style:none">
+<li ng-repeat="user in users">
+<b>{{user.firstname}}</b>&nbsp; <b>{{user.lastname}}</b> <br>
+{{user.email}}<br>
+{{user.phone}}<hr>
+</li>
+</ul>
+</body>
+</html>
